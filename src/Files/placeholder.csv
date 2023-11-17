@@ -1,0 +1,6 @@
+Username,Email,Phone,ID,CreationDate
+user1,email1@example.com,123-456-7890,1,2023-01-01
+user2,email2@example.com,234-567-8901,2,2023-01-02
+user3,email3@example.com,345-678-9012,3,2023-01-03
+user4,email4@example.com,456-789-0123,4,2023-01-04
+user5,email5@example.com,567-890-1234,5,2023-01-05
