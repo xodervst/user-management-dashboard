@@ -22,11 +22,11 @@ function AccountCreation() {
   };
 
   return (
-    <div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Account Creation</h2>
-        <form class="space-y-4" onSubmit={handleSubmit}>
-            <div class="flex flex-col">
-            <label for="username" class="mb-1 text-sm">Username:</label>
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+        <h2 className="text-2xl font-bold mb-4">Account Creation</h2>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+            <label for="username" className="mb-1 text-sm">Username:</label>
             <input
                 id="username"
                 type="text"
@@ -47,7 +47,7 @@ function AccountCreation() {
             </div>
             <button
                 type="submit"
-                className="bg-blue-500 text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                className="bg-gray-500 text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
                 >
                 Create Account
             </button>
