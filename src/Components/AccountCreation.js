@@ -26,7 +26,7 @@ function AccountCreation() {
         <h2 className="text-2xl font-bold mb-4">Account Creation</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col">
-            <label for="username" className="mb-1 text-sm">Username:</label>
+            <label htmlFor="username" className="mb-1 text-sm">Username:</label>
             <input
                 id="username"
                 type="text"
@@ -35,8 +35,8 @@ function AccountCreation() {
                 className="py-2 px-3 border border-gray-300 rounded-md"
             />
             </div>
-            <div class="flex flex-col">
-            <label for="password" class="mb-1 text-sm">Password:</label>
+            <div className="flex flex-col">
+            <label htmlFor="password" className="mb-1 text-sm">Password:</label>
             <input
                 id="password"
                 type="password"
