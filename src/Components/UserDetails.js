@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import Modal from './Modal';
+// Modal component
+
+
 
 function UserDetails() {
   const [userData, setUserData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedUser, setSelectedUser] = useState(null); // New state for the selected user
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     // Fetch user data from the placeholder CSV
     // For simplicity, we'll use a hardcoded CSV string instead of an actual fetch
     const csvData = `Username,Email,Phone,ID,CreationDate
-    user1,email1@example.com,123-456-7890,1,2023-01-01
-    user2,email2@example.com,234-567-8901,2,2023-01-02
-    user3,email3@example.com,345-678-9012,3,2023-01-03
-    user4,email4@example.com,456-789-0123,4,2023-01-04
-    user5,email5@example.com,567-890-1234,5,2023-01-05`;
+user1,email1@example.com,123-456-7890,1,2023-01-01
+user2,email2@example.com,234-567-8901,2,2023-01-02
+user3,email3@example.com,345-678-9012,3,2023-01-03
+user4,email4@example.com,456-789-0123,4,2023-01-04
+user5,email5@example.com,567-890-1234,5,2023-01-05`;
 
     const rows = csvData.split('\n').slice(1); // Skip header
     const data = rows.map(row => {
@@ -30,19 +34,19 @@ function UserDetails() {
     )
   );
 
-  const handleUserClick = (user) => {
+  const openModal = user => {
     setSelectedUser(user);
   };
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     setSelectedUser(null);
   };
 
-  const handleGenerateReport = () => {
-    // Implement the logic to generate a report for the selected user
-    console.log(`Generating report for user: ${selectedUser.username}`);
-    // Add your logic to generate a report here
-    handleCloseModal(); // Close the modal after generating the report
+  const generateReport = (userId) => {
+    // Simulating report generation
+    alert(`Generating report for user with ID: ${userId}`);
+    // You can replace this with your actual report generation logic
+    // For example, make an API call to fetch and generate the report
   };
 
   return (
@@ -52,46 +56,24 @@ function UserDetails() {
         type="text"
         placeholder="Search..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={e => setSearchTerm(e.target.value)}
         className="w-full p-2 border rounded-md mb-4"
       />
-      <table className="w-full border">
-        <thead>
-          <tr>
-            <th className="border p-2">Username</th>
-            <th className="border p-2">Email</th>
-            <th className="border p-2">Phone</th>
-            <th className="border p-2">ID</th>
-            <th className="border p-2">Creation Date</th>
-          </tr>
-        </thead>
+      <table className="w-full border border-separate">
+        {/* ... (unchanged table header) */}
         <tbody>
-          {filteredData.map((user) => (
-            <tr key={user.id} className="border" onClick={() => handleUserClick(user)}>
-              <td className="border p-2">{user.username}</td>
-              <td className="border p-2">{user.email}</td>
-              <td className="border p-2">{user.phone}</td>
-              <td className="border p-2">{user.id}</td>
-              <td className="border p-2">{user.creationDate}</td>
+          {filteredData.map(user => (
+            <tr key={user.id} className="border" onClick={() => openModal(user)}>
+              <td className="border p-2 bg-gray-200">{user.username}</td>
+              <td className="border p-2 bg-gray-200">{user.email}</td>
+              <td className="border p-2 bg-gray-200">{user.phone}</td>
+              <td className="border p-2 bg-gray-200">{user.id}</td>
+              <td className="border p-2 bg-gray-200">{user.creationDate}</td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Modal for generating a report */}
-      {selectedUser && (
-        <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-
-
-          <div className="modal-content">
-            <span className="close" onClick={handleCloseModal}>&times;</span>
-            <h2>Generate Report for {selectedUser.username}</h2>
-            {/* Add additional content or buttons as needed */}
-            <button onClick={handleGenerateReport}>Generate Report</button>
-          </div>
-        </div>
-      )}
-      
+      {selectedUser && <Modal user={selectedUser} closeModal={closeModal} generateReport={generateReport} />}
     </div>
   );
 }
